@@ -1,10 +1,21 @@
 import 'package:flutter/material.dart';
+import 'package:netflix_clone_test_app/model/model_movie.dart';
 
 class HomeScreen extends StatefulWidget {
   _HomeScreenState createState() => _HomeScreenState();
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+  /// 그냥 set 형태로 관리해도 되지만, 굳이 Movie 모델로 선언하여 더미 데이터를 만드는 이유
+  /// 추후 파이어베이스와의 연동에서 실제로 가져오는 데이터를 그대로 처리하기 위함
+  List<Movie> movies = [
+    Movie.fromMap({
+      'title': '사랑의 불시착',
+      'keyword': '사랑/로맨스/판타지',
+      'poster': 'test_movie_1.png',
+      'like': false
+    })
+  ];
 
   @override
   void initState() {
@@ -18,7 +29,6 @@ class _HomeScreenState extends State<HomeScreen> {
 }
 
 class TopBar extends StatelessWidget {
-
   @override
   Widget build(BuildContext context) {
     return Container(
