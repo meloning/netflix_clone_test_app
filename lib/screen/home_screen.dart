@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:netflix_clone_test_app/model/model_movie.dart';
 import 'package:netflix_clone_test_app/widget/box_slider.dart';
@@ -9,42 +10,30 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  /// 그냥 set 형태로 관리해도 되지만, 굳이 Movie 모델로 선언하여 더미 데이터를 만드는 이유
-  /// 추후 파이어베이스와의 연동에서 실제로 가져오는 데이터를 그대로 처리하기 위함
-  List<Movie> movies = [
-    Movie.fromMap({
-      'title': '사랑의 불시착',
-      'keyword': '사랑/로맨스/판타지',
-      'poster': 'test_movie_1.png',
-      'like': false
-    }),
-    Movie.fromMap({
-      'title': '사랑의 불시착',
-      'keyword': '사랑/로맨스/판타지',
-      'poster': 'test_movie_1.png',
-      'like': false
-    }),
-    Movie.fromMap({
-      'title': '사랑의 불시착',
-      'keyword': '사랑/로맨스/판타지',
-      'poster': 'test_movie_1.png',
-      'like': false
-    }),
-    Movie.fromMap({
-      'title': '사랑의 불시착',
-      'keyword': '사랑/로맨스/판타지',
-      'poster': 'test_movie_1.png',
-      'like': false
-    }),
-  ];
+  FirebaseFirestore firestore = FirebaseFirestore.instance;
+  Stream<QuerySnapshot> streamData;
 
   @override
   void initState() {
     super.initState();
+    streamData = firestore.collection('movie').snapshots();
   }
 
-  @override
-  Widget build(BuildContext context) {
+  Widget _fetchData(BuildContext context) {
+    return StreamBuilder<QuerySnapshot>(
+      stream: FirebaseFirestore.instance.collection('movie').snapshots(),
+      builder: (context, snapshot) {
+        if (!snapshot.hasData) return LinearProgressIndicator();
+        return _buildBody(context, snapshot.data.docs);
+      },
+    );
+  }
+
+  Widget _buildBody(BuildContext context, List<DocumentSnapshot> snapshot) {
+    List<Movie> movies = snapshot
+        .map((DocumentSnapshot documentSnapshot) =>
+            Movie.fromSnapshot(documentSnapshot))
+        .toList();
     return ListView(
       children: <Widget>[
         Stack(
@@ -61,6 +50,11 @@ class _HomeScreenState extends State<HomeScreen> {
         )
       ],
     );
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return _fetchData(context);
   }
 }
 
