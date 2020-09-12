@@ -3,6 +3,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:netflix_clone_test_app/screen/home_screen.dart';
 import 'package:netflix_clone_test_app/screen/more_screen.dart';
+import 'package:netflix_clone_test_app/screen/search_screen.dart';
 import 'package:netflix_clone_test_app/widget/bottom_bar.dart';
 
 /// Requires that a Firestore emulator is running locally.
@@ -42,11 +43,7 @@ class _MyAppState extends State<MyApp> {
             physics: NeverScrollableScrollPhysics(),
             children: <Widget>[
               HomeScreen(),
-              Container(
-                child: Center(
-                  child: Text('search'),
-                ),
-              ),
+              SearchScreen(),
               Container(
                 child: Center(
                   child: Text('save'),
