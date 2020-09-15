@@ -11,7 +11,7 @@ Flutter기반 Netflix 디자인 및 일부 기능을 Clone한 App입니다.
 
 ## Demo
 
-[![IMAGE ALT TEXT](https://i9.ytimg.com/vi/Y_EC_MFUNQ4/mq3.jpg?sqp=CIzO-PoF&rs=AOn4CLBRaPU7BMPATipZewYLVl6n8Dw7Og)](https://youtu.be/Y_EC_MFUNQ4)
+[![IMAGE ALT TEXT HERE](https://img.youtube.com/vi/Y_EC_MFUNQ4/0.jpg)](https://www.youtube.com/watch?v=Y_EC_MFUNQ4)
 
 youtube link: https://youtu.be/Y_EC_MFUNQ4
 
