@@ -1,23 +1,11 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:netflix_clone_test_app/model/model_movie.dart';
+import 'package:netflix_clone_test_app/model/movie.dart';
 import 'package:netflix_clone_test_app/widget/box_slider.dart';
 import 'package:netflix_clone_test_app/widget/carousel_slider.dart';
 import 'package:netflix_clone_test_app/widget/circle_slider.dart';
 
-class HomeScreen extends StatefulWidget {
-  _HomeScreenState createState() => _HomeScreenState();
-}
-
-class _HomeScreenState extends State<HomeScreen> {
-  FirebaseFirestore firestore = FirebaseFirestore.instance;
-  Stream<QuerySnapshot> streamData;
-
-  @override
-  void initState() {
-    super.initState();
-    streamData = firestore.collection('movie').snapshots();
-  }
+class HomeScreen extends StatelessWidget {
 
   Widget _fetchData(BuildContext context) {
     return StreamBuilder<QuerySnapshot>(
@@ -32,7 +20,7 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget _buildBody(BuildContext context, List<DocumentSnapshot> snapshot) {
     List<Movie> movies = snapshot
         .map((DocumentSnapshot documentSnapshot) =>
-            Movie.fromSnapshot(documentSnapshot))
+        Movie.fromSnapshot(documentSnapshot))
         .toList();
     return ListView(
       children: <Widget>[

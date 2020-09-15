@@ -1,6 +1,6 @@
 import 'dart:ui';
 import 'package:flutter/material.dart';
-import 'package:netflix_clone_test_app/model/model_movie.dart';
+import 'package:netflix_clone_test_app/model/movie.dart';
 
 class DetailScreen extends StatefulWidget {
   final Movie movie;

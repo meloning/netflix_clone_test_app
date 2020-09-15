@@ -2,7 +2,7 @@ import 'dart:developer';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:netflix_clone_test_app/model/model_movie.dart';
+import 'package:netflix_clone_test_app/model/movie.dart';
 
 import 'detail_screen.dart';
 
